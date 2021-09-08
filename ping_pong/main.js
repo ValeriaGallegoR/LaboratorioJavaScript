@@ -59,4 +59,23 @@ Window.boardView.prototype = {
         };
     }
  }
-});
+ function draw(ctx,element){
+    if (element !== null && element.hasOwnProperty("kind")){
+        switch (element.kind){
+            case "rectangle":
+                ctx.fillRect(element.ejeX, element.ejeX, element.width, element.height)
+                break;
+        }
+    }
+}
+})();
+
+window.addEventListener("load", main);
+
+function main (){
+var board = new Window.board(800, 400);
+var boardView = new Window.boardView("canvas", board);
+var bar = new Window.bar(10, 50, 10, 60, board);
+var bar = new Window.bar(600, 50, 10, 60, board);
+boardView.draw(); 
+}
