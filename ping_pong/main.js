@@ -1,81 +1,95 @@
-(function(){
-
-    Window.board = function (width, height){
+(function () {
+  self.Board = function (width, height) {
     this.width = width;
     this.height = height;
     this.playing = false;
     this.game_over = false;
     this.bars = [];
     this.ball = null;
+  };
 
-}
-
-Window.board.prototype = {
-    get elements(){
-        var elements = this.bars;
-        elements.push(this.ball);
-        return elements;
-    }
-}
+  self.Board.prototype = {
+    get elements() {
+      var elements = this.bars;
+      elements.push(this.ball);
+      return elements;
+    },
+  };
 })();
 
-(function(){
-Window.bar = function(ejeX, ejeY, width, height, board){
-    this.ejeX = ejeX;
-    this.ejeY = ejeY;
+(function () {
+  self.Bar = function (x, y, width, height, board) {
+    this.x = x;
+    this.y = y;
     this.width = width;
     this.height = height;
     this.board = board;
     this.board.bars.push(this);
     this.kind = "rectangle";
-}
+    this.speed = 10;
+  };
 
-Window.bar.prototype = {
-    down: function(){
-
+  self.Bar.prototype = {
+    down: function () {
+      this.y += this.speed;
     },
-    up: function(){
-    }
-}
+    up: function () {
+      this.y -= this.speed;
+    },
+    toString: function () {
+      return "x: " + this.x + "y: " + this.y;
+    },
+  };
 })();
 
-(function(){
-    Window.boardView = function(canvas,board){
-    canvas = document.getElementById("canvas");
-    // canvas = CanvasRenderingContext2D;
-    this.width = board.width;
-    this.height = board.height;
+(function () {
+  self.BoardView = function (canvas, board) {
+    this.canvas = canvas;
+    this.canvas.width = board.width;
+    this.canvas.height = board.height;
     this.board = board;
     this.ctx = canvas.getContext("2d");
-    canvas.style.width = "800px";
-    canvas.style.height = "400px";
-}
+  };
 
-Window.boardView.prototype = {
-    draw: function(){
-        for (var i = this.board.elements.length - 1; i>= 0; i--){
-             var el=  this.board.elements[i];
-             draw(this.ctx, el);
-        };
+  self.BoardView.prototype = {
+    draw: function () {
+      for (var i = this.board.elements.length - 1; i >= 0; i--) {
+        var el = this.board.elements[i];
+
+        draw(this.ctx, el);
+      }
+    },
+  };
+
+  function draw(ctx, element) {
+    if (element !== null && element.hasOwnProperty("kind")) {
+      switch (element.kind) {
+        case "rectangle":
+          ctx.fillRect(element.x, element.y, element.width, element.height);
+          break;
+      }
     }
- }
- function draw(ctx,element){
-    if (element !== null && element.hasOwnProperty("kind")){
-        switch (element.kind){
-            case "rectangle":
-                ctx.fillRect(element.ejeX, element.ejeX, element.width, element.height)
-                break;
-        }
-    }
-}
+  }
 })();
 
-window.addEventListener("load", main);
+var board = new Board(800, 400);
+var bar = new Bar(20, 100, 40, 100, board);
+var bar = new Bar(700, 100, 40, 100, board);
+var canvas = document.getElementById("canvas");
+var board_view = new BoardView(canvas, board);
 
-function main (){
-var board = new Window.board(800, 400);
-var boardView = new Window.boardView("canvas", board);
-var bar = new Window.bar(10, 50, 10, 60, board);
-var bar = new Window.bar(600, 50, 10, 60, board);
-boardView.draw(); 
+document.addEventListener("keydown", function (ev) {
+  if (ev.KeyCode == 38) {
+    bar.up();
+  } else if (ev.KeyCode == 40) {
+    bar.down();
+  }
+  console.log(bar.toString());
+});
+
+self.addEventListener("load", main);
+
+function main() {
+  board_view.draw();
+  self.requestAnimationFrame(main);
 }
