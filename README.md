@@ -2,31 +2,32 @@
 
 Preguntas:
 
-1. ¿Cuáles son las principales diferencias entre crear un archivo .html, .css y .js?
+1.	¿Cuáles son las principales diferencias entre crear un archivo .html, .css y .js?
 
-.html se crea para el contenido a la web
+    .html se crea para el contenido a la web
+   
+    .css se crea para la presentación y el diseño de la web
+   
+    .js se crea para interactuar con la interfaz
 
-.css se crea para la presentación y el diseño de la web
+2.	¿Qué significa UTF-8 en html?
 
-.js se crea para interactuar con la interfaz 
+    “Formato de Transformación Unicode” (en inglés), y el número 8 a los bits
 
-2. ¿Qué significa UTF-8 en html?
+3.	¿Qué es un prototype?
 
-“Formato de Transformación Unicode” (en inglés), y el número 8 a los bits
+      Es un mecanismo mediante el cual los objetos en JavaScript heredan características entre sí
 
-3. ¿Qué es un prototype? 
+4.	¿Qué nos permite realizar Canvas?
 
-Es un mecanismo mediante el cual los objetos en JavaScript heredan características entre sí
+      Es usado para dibujar gráficos, realizar composición de fotos o simples (y no tan simples) y animaciones.
 
-4. ¿Qué nos permite realizar Canvas? 
+5.	¿Para qué nos sirve utilizar un evento?
 
-Es usado para dibujar gráficos, realizar composición de fotos o simples (y no tan simples) y animaciones.
+      Para enlazar codigo/funciones de JavaScript a una acción que puede suceder dentro de una página web
 
-5. ¿Para qué nos sirve utilizar un evento?
+6.	¿Qué hace el metodo pop()?
 
-Para enlazar codigo/funciones de JavaScript a una acción que puede suceder dentro de una página web 
+      El pop()método elimina el último elemento de un arreglo o una matriz
 
-6. ¿Qué hace el metodo pop()?
-
-El pop()método elimina el último elemento de un arreglo o una matriz 
 
