@@ -153,10 +153,12 @@
     //Dibuja en la pantalla los objetos barra y pelota
     switch (element.kind) {
       case "rectangle":
+        ctx.fillStyle = "gray";
         ctx.fillRect(element.x, element.y, element.width, element.height);
         break;
 
       case "circle":
+        ctx.fillStyle = "pink";
         ctx.beginPath();
         ctx.arc(element.x, element.y, element.radius, 0, 7);
         ctx.fill();
